@@ -1,0 +1,498 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #030306;
+}
+
+.page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #030306;
+  cursor: none;
+}
+
+.scene {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* FIRE BACKGROUND */
+
+.fire-background {
+  pointer-events: none;
+}
+
+/* Realistic layered fire animation */
+
+.flame {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: fireDance 1.1s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+.flame-2 {
+  animation-duration: 1.45s;
+  animation-delay: -0.5s;
+}
+
+.flame-3 {
+  animation-duration: 0.85s;
+  animation-delay: -0.25s;
+}
+
+.flame-4 {
+  animation-duration: 0.65s;
+  animation-delay: -0.7s;
+}
+
+@keyframes fireDance {
+  0% {
+    transform: scaleY(0.88) scaleX(1.03) skewX(-2deg);
+    opacity: 0.78;
+  }
+
+  30% {
+    transform: scaleY(1.08) scaleX(0.96) skewX(2deg);
+    opacity: 0.95;
+  }
+
+  65% {
+    transform: scaleY(0.96) scaleX(1.04) skewX(-1deg);
+    opacity: 0.88;
+  }
+
+  100% {
+    transform: scaleY(1.15) scaleX(0.94) skewX(3deg);
+    opacity: 1;
+  }
+}
+
+/* Fire glow near the bottom */
+.fire-background {
+  pointer-events: none;
+}
+
+.chase-halo {
+  filter: blur(9px);
+}
+/* CONNECTED BODY */
+
+.curve {
+  fill: none;
+  stroke: rgba(255, 30, 30, 0.1);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dragon-spine {
+  fill: none;
+  stroke: url(#redDragon);
+  stroke-width: 25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.body {
+  fill: url(#redDragon);
+  stroke: #4d0609;
+  stroke-width: 1.5;
+}
+
+.shine {
+  fill: rgba(255, 180, 150, 0.35);
+  pointer-events: none;
+}
+
+/* NECK */
+
+.neck {
+  fill: url(#redDragon);
+  stroke: #4d0609;
+  stroke-width: 2;
+}
+
+/* HEAD */
+
+.head {
+  fill: url(#redDragon);
+  stroke: #4d0609;
+  stroke-width: 2;
+}
+
+.snout {
+  fill: #bd1118;
+  stroke: #4d0609;
+  stroke-width: 2;
+}
+
+/* HORNS */
+
+.horn {
+  fill: #ead9ad;
+  stroke: #856a43;
+  stroke-width: 1;
+}
+
+/* EYES */
+
+.pupil {
+  fill: #260000;
+}
+
+.mouth {
+  fill: none;
+  stroke: #300000;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.teeth {
+  fill: none;
+  stroke: #f4e7c9;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* WINGS */
+
+.wing {
+  fill: url(#wingGradient);
+  stroke: #500609;
+  stroke-width: 2;
+}
+
+.wingBone {
+  fill: none;
+  stroke: rgba(255, 130, 110, 0.65);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+/* DRAGON GLOW */
+
+.head,
+.neck,
+.body,
+.wing,
+.snout {
+  paint-order: stroke fill;
+}
+
+/* GOLDEN FIREBALL */
+
+.chase-object {
+  pointer-events: none;
+}
+
+.chase-halo {
+  fill: #ff5a00;
+  opacity: 0.3;
+  filter: blur(9px);
+  animation: haloPulse 1.2s ease-in-out infinite alternate;
+}
+
+.chase-orb {
+  fill: url(#orbGradient);
+  stroke: #fff1a6;
+  stroke-width: 1.5;
+}
+
+.chase-core {
+  fill: #fffde1;
+}
+
+.chase-spark {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sparkSpin 1.5s linear infinite;
+}
+
+@keyframes haloPulse {
+  from {
+    opacity: 0.12;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 0.4;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes sparkSpin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  .dragon-spine {
+    stroke-width: 22;
+  }
+
+  .chase-halo {
+    filter: blur(6px);
+  }
+
+  .flame {
+    animation-duration: 1.5s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flame,
+  .chase-halo,
+  .chase-spark {
+    animation-duration: 3s;
+  }
+}
+
+.fire-background {
+  pointer-events: none;
+}
+
+.real-flame {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: realFireMove 1.4s ease-in-out infinite alternate;
+}
+
+.flame-a {
+  animation-duration: 1.7s;
+}
+
+.flame-b {
+  animation-duration: 0.9s;
+  animation-delay: -0.5s;
+}
+
+@keyframes realFireMove {
+  0% {
+    transform: scaleY(0.94) skewX(-1deg);
+    opacity: 0.82;
+  }
+
+  50% {
+    transform: scaleY(1.06) skewX(2deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleY(0.98) skewX(-2deg);
+    opacity: 0.9;
+  }
+}
+
+.fire-ember {
+  opacity: 0;
+  animation: emberRise 3s linear infinite;
+}
+
+@keyframes emberRise {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  20% {
+    opacity: 0.9;
+  }
+
+  80% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
+
+.scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Background fire layers */
+
+.fire-layer {
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  will-change: opacity, filter;
+}
+
+.fire-back {
+  animation: distantFire 1.8s ease-in-out infinite alternate;
+}
+
+.fire-front {
+  animation: foregroundFire 0.7s ease-in-out infinite alternate;
+}
+
+/* Individual flame movement */
+
+.real-fire {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: flameDance 1.3s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+.flame-0 {
+  animation-duration: 0.85s;
+}
+
+.flame-1 {
+  animation-duration: 1.15s;
+}
+
+.flame-2 {
+  animation-duration: 0.95s;
+}
+
+.flame-3 {
+  animation-duration: 1.4s;
+}
+
+/* Fire flickering */
+
+@keyframes flameDance {
+  0% {
+    transform: scaleY(0.88) skewX(-2deg);
+    opacity: 0.78;
+  }
+
+  35% {
+    transform: scaleY(1.08) skewX(2deg);
+    opacity: 1;
+  }
+
+  70% {
+    transform: scaleY(0.94) skewX(-1deg);
+    opacity: 0.86;
+  }
+
+  100% {
+    transform: scaleY(1.12) skewX(1.5deg);
+    opacity: 0.98;
+  }
+}
+
+@keyframes distantFire {
+  0% {
+    opacity: 0.7;
+    filter: brightness(0.85);
+  }
+
+  100% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes foregroundFire {
+  0% {
+    opacity: 0.82;
+    filter: brightness(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+}
+
+/* Floating fire embers */
+
+.fire-embers {
+  pointer-events: none;
+}
+
+.fire-ember {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: emberFloat 3s linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes emberFloat {
+  0% {
+    transform: translate(0, 35px) scale(0.5);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 0.85;
+  }
+
+  100% {
+    transform: translate(12px, -150px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Dragon glow */
+
+#redGlow {
+  color-interpolation-filters: sRGB;
+}
+
+/* Mobile responsive */
+
+@media (max-width: 700px) {
+  .page {
+    width: 100%;
+    height: 100dvh;
+  }
+
+  .scene {
+    width: 100%;
+    height: 100%;
+  }
+
+  .fire-layer,
+  .fire-embers {
+    pointer-events: none;
+  }
+}
+
+/* Respect reduced motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .fire-layer,
+  .real-fire,
+  .fire-ember {
+    animation-duration: 3s;
+  }
+}
